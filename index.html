@@ -10,92 +10,68 @@
         :root { --neon-color: #bc13fe; }
         body { background: #000; min-height: 100vh; color: #fff; font-family: sans-serif; overflow-x: hidden; }
 
-        /* Кнопки переключения ПРАКТИКИ / ЛЕКЦИИ */
+        /* Шапка описания */
+        .hero-section { 
+            background: linear-gradient(135deg, rgba(188, 19, 254, 0.1) 0%, transparent 100%); 
+            border-radius: 40px; padding: 50px; margin-bottom: 40px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
+        
+        /* Кнопки разделов */
         .tab-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto 40px; }
         .section-tab { cursor: pointer; padding: 30px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
         .section-tab.active { border: 2px solid var(--neon-color); box-shadow: 0 0 25px var(--neon-color); background: rgba(255,255,255,0.05); }
 
-        /* Сетка предметов по горизонтали */
-        .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding-bottom: 50px; }
-
-        .glass-card { 
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 40px 20px; border-radius: 35px; transition: 0.3s; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
+        /* Карточки предметов */
+        .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; border-radius: 35px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 20px var(--neon-color); transform: scale(1.02); }
 
         .subject-name { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 25px; color: var(--neon-color); }
-
-        .btn-open { 
-            border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 15px; 
-            font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; transition: 0.3s; width: 100%; text-align: center;
-        }
-        .btn-open:hover { background: var(--neon-color); color: #000; box-shadow: 0 0 15px var(--neon-color); }
-
-        #search { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 15px; padding: 18px 25px; width: 100%; outline: none; margin-bottom: 30px; }
+        
+        #search { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 15px; padding: 18px 25px; width: 100%; outline: none; margin-bottom: 30px; font-size: 1.1rem; }
+        #search:focus { border-color: var(--neon-color); box-shadow: 0 0 15px var(--neon-color); }
+        
         .neon-text { text-shadow: 0 0 15px var(--neon-color); }
+        .theme-btn { position: fixed; top: 20px; right: 20px; z-index: 100; background: #000; border: 2px solid var(--neon-color); padding: 8px 15px; border-radius: 10px; font-weight: 900; font-size: 12px; cursor: pointer; box-shadow: 0 0 10px var(--neon-color); }
     </style>
 </head>
 <body class="px-6 py-10">
+    <button class="theme-btn" id="main-theme-btn">СТИЛЬ</button>
+
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-10">
-            <h1 class="text-6xl font-black italic uppercase tracking-tighter">Архив <span class="neon-text">ИМСИТА</span></h1>
+            <h1 class="text-6xl font-black italic uppercase tracking-tighter animate__animated animate__fadeInDown">Архив <span class="neon-text">ИМСИТА</span></h1>
         </header>
 
-        <div class="tab-container animate__animated animate__fadeInUp">
+        <div class="hero-section animate__animated animate__fadeIn">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl font-bold mb-4 italic uppercase">Образовательный репозиторий</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                        Добро пожаловать в структурированный архив учебных материалов. Мы разделили контент на лекционные и практические блоки для максимально быстрого поиска нужной темы.
+                    </p>
+                    <div class="inline-block bg-white/5 border border-white/10 px-6 py-3 rounded-2xl">
+                        <span class="text-gray-500 font-bold uppercase text-xs block mb-1">Всего записей</span>
+                        <span class="text-3xl font-black neon-text" id="stat-count">0</span>
+                    </div>
+                </div>
+                <div class="hidden md:block text-right opacity-10 font-black text-9xl italic leading-none select-none">
+                    IMSIT<br>2026
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-container">
             <div onclick="setSection('практика')" id="tab-pract" class="section-tab active">ПРАКТИКИ</div>
             <div onclick="setSection('лекция')" id="tab-lect" class="section-tab">ЛЕКЦИИ</div>
         </div>
 
-        <input type="text" id="search" placeholder="Поиск предмета...">
+        <input type="text" id="search" placeholder="Найти предмет (например: Математика)...">
+        
         <div id="content" class="subjects-grid"></div>
     </div>
 
-    <script>
-        let database = [];
-        let currentSection = 'практика';
-
-        function setSection(section) {
-            currentSection = section;
-            document.getElementById('tab-pract').classList.toggle('active', section === 'практика');
-            document.getElementById('tab-lect').classList.toggle('active', section === 'лекция');
-            render();
-        }
-
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => {
-                database = data;
-                render();
-                document.getElementById('search').oninput = render;
-            });
-
-        function render() {
-            const query = document.getElementById('search').value.toLowerCase();
-            const container = document.getElementById('content');
-            
-            // Фильтруем предметы, которые есть в текущем разделе
-            const filtered = database.filter(item => {
-                const type = item.type.toLowerCase().replace('пратика', 'практика');
-                return type === currentSection;
-            });
-
-            // Берем только уникальные названия предметов
-            const uniqueSubjects = [...new Set(filtered.map(i => i.subject))]
-                .filter(s => s.toLowerCase().includes(query));
-
-            container.innerHTML = uniqueSubjects.map(subject => `
-                <div class="glass-card animate__animated animate__fadeInUp">
-                    <div class="subject-name">${subject}</div>
-                    <div class="btn-open" onclick="goToSubject('${subject}')">Открыть темы</div>
-                </div>
-            `).join('');
-        }
-
-        function goToSubject(name) {
-            window.location.href = `subject.html?name=${encodeURIComponent(name)}&type=${encodeURIComponent(currentSection)}`;
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>

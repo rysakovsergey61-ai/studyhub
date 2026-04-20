@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Темы и материалы</title>
+    <title>Темы предмета</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root { --neon-color: #bc13fe; }
-        body { background: #000; color: #fff; font-family: sans-serif; min-height: 100vh; }
+        body { background: #000; color: #fff; font-family: sans-serif; min-height: 100vh; padding: 40px 20px; }
         
-        .btn-back { margin-bottom: 30px; display: inline-block; color: var(--neon-color); font-weight: 800; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
-        .btn-back:hover { text-shadow: 0 0 10px var(--neon-color); }
+        .btn-back { color: var(--neon-color); font-weight: 800; text-transform: uppercase; text-decoration: none; margin-bottom: 40px; display: inline-block; transition: 0.3s; }
+        .btn-back:hover { text-shadow: 0 0 10px var(--neon-color); transform: translateX(-5px); }
 
-        .topic-card { 
+        .topic-row { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 25px; border-radius: 25px; display: flex; justify-content: space-between; 
-            align-items: center; transition: 0.3s; margin-bottom: 12px;
+            padding: 25px 35px; border-radius: 25px; display: flex; justify-content: space-between; 
+            align-items: center; transition: 0.3s; margin-bottom: 15px;
         }
-        .topic-card:hover { border-color: var(--neon-color); box-shadow: 0 0 15px var(--neon-color); }
+        .topic-row:hover { border-color: var(--neon-color); box-shadow: 0 0 15px var(--neon-color); background: rgba(255,255,255,0.06); }
 
         .neon-text { text-shadow: 0 0 15px var(--neon-color); color: var(--neon-color); }
-        .btn-file { border: 1px solid var(--neon-color); padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 11px; text-transform: uppercase; text-decoration: none; color: #fff; transition: 0.3s; }
-        .btn-file:hover { background: var(--neon-color); color: #000; }
+        .btn-link { border: 1px solid var(--neon-color); padding: 10px 25px; border-radius: 12px; font-weight: 800; font-size: 11px; text-transform: uppercase; text-decoration: none; color: #fff; transition: 0.3s; }
+        .btn-link:hover { background: var(--neon-color); color: #000; box-shadow: 0 0 10px var(--neon-color); }
     </style>
 </head>
-<body class="p-8 md:p-16">
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="btn-back">← Назад к списку предметов</a>
+<body>
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="btn-back">← Назад к архиву</a>
         
-        <header class="mb-10">
-            <h1 id="subj-title" class="text-5xl font-black italic uppercase neon-text">Загрузка...</h1>
-            <p id="sect-label" class="text-gray-500 font-bold uppercase tracking-widest mt-2">РАЗДЕЛ</p>
+        <header class="mb-12">
+            <h1 id="subject-title" class="text-5xl md:text-7xl font-black italic uppercase neon-text tracking-tighter">Загрузка...</h1>
+            <p id="section-label" class="text-gray-500 font-bold uppercase tracking-widest mt-4">РАЗДЕЛ</p>
         </header>
 
         <div id="topics-list" class="animate__animated animate__fadeInUp">
@@ -39,30 +39,34 @@
     </div>
 
     <script>
+        // Восстановление стиля
+        const savedColor = localStorage.getItem('user-neon') || '#bc13fe';
+        document.documentElement.style.setProperty('--neon-color', savedColor);
+
+        // Получение данных из URL
         const params = new URLSearchParams(window.location.search);
         const name = params.get('name');
         const type = params.get('type');
 
-        document.getElementById('subj-title').innerText = name;
-        document.getElementById('sect-label').innerText = type === 'лекция' ? 'ЛЕКЦИИ' : 'ПРАКТИКИ';
+        document.getElementById('subject-title').innerText = name;
+        document.getElementById('section-label').innerText = type === 'лекция' ? 'ЛЕКЦИИ' : 'ПРАКТИКИ';
 
         fetch('data.json')
             .then(res => res.json())
             .then(data => {
-                // Ищем в базе все темы этого предмета в этом разделе
-                const topics = data.filter(i => 
+                const filtered = data.filter(i => 
                     i.subject === name && 
                     i.type.toLowerCase().replace('пратика', 'практика') === type.toLowerCase()
                 );
 
-                const list = document.getElementById('topics-list');
-                if (topics.length === 0) {
-                    list.innerHTML = '<div class="opacity-20 text-2xl font-black italic">ТЕМЫ НЕ НАЙДЕНЫ</div>';
+                const container = document.getElementById('topics-list');
+                if (filtered.length === 0) {
+                    container.innerHTML = '<div class="opacity-10 text-4xl font-black italic">ДАННЫЕ ОТСУТСТВУЮТ</div>';
                 } else {
-                    list.innerHTML = topics.map(t => `
-                        <div class="topic-card">
-                            <div class="text-lg font-bold uppercase tracking-tight">${t.title}</div>
-                            <a href="${t.link}" target="_blank" class="btn-file">Открыть файл</a>
+                    container.innerHTML = filtered.map(t => `
+                        <div class="topic-row">
+                            <div class="text-xl font-bold uppercase tracking-tight">${t.title}</div>
+                            <a href="${t.link}" target="_blank" class="btn-link">Открыть материал</a>
                         </div>
                     `).join('');
                 }
