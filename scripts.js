@@ -2,28 +2,30 @@ const contentDiv = document.getElementById('content');
 const searchInput = document.getElementById('search');
 let database = [];
 let currentFilter = 'all';
-let currentSubject = 'all';
 
-// --- ЛОГИКА СКИНОВ ---
+// Функция открытия/закрытия меню
 function toggleMenu() {
     const menu = document.getElementById('color-menu');
     menu.style.display = menu.style.display === 'grid' ? 'none' : 'grid';
 }
 
+// Установка темы
 function setTheme(color) {
     document.documentElement.style.setProperty('--neon-color', color);
     localStorage.setItem('user-neon', color);
+    
     document.getElementById('color-menu').style.display = 'none';
-    const btn = document.getElementById('main-theme-btn');
-    btn.style.borderColor = color;
-    btn.style.boxShadow = `0 0 15px ${color}`;
+    
+    const mainBtn = document.getElementById('main-theme-btn');
+    mainBtn.style.borderColor = color;
+    mainBtn.style.boxShadow = `0 0 15px ${color}`;
 }
 
-// Загрузка темы при старте
+// Загрузка сохраненной темы
 const savedColor = localStorage.getItem('user-neon') || '#ffffff';
 setTheme(savedColor);
 
-// --- ЗАГРУЗКА ДАННЫХ ---
+// Загрузка данных
 fetch('data.json')
     .then(res => res.json())
     .then(data => {
@@ -48,32 +50,17 @@ function filterByType(type) {
     applyFilters();
 }
 
-function filterBySubject(subject) {
-    currentSubject = subject;
-    document.querySelectorAll('.subj-btn').forEach(btn => {
-        btn.classList.remove('active-subj');
-        if(btn.innerText.toLowerCase().includes(subject.toLowerCase()) || (subject === 'all' && btn.innerText === 'ВСЕ')) {
-            btn.classList.add('active-subj');
-        }
-    });
-    applyFilters();
-}
-
 function applyFilters() {
     const query = searchInput.value.toLowerCase();
     let filtered = database;
     if (currentFilter !== 'all') filtered = filtered.filter(i => i.type.toLowerCase() === currentFilter);
-    if (currentSubject !== 'all') filtered = filtered.filter(i => i.subject.toLowerCase().includes(currentSubject.toLowerCase()));
-    
-    filtered = filtered.filter(i => 
-        i.title.toLowerCase().includes(query) || i.subject.toLowerCase().includes(query)
-    );
+    filtered = filtered.filter(i => i.title.toLowerCase().includes(query) || i.subject.toLowerCase().includes(query));
     render(filtered);
 }
 
 function render(items) {
     if (items.length === 0) {
-        contentDiv.innerHTML = '<p class="text-gray-600 text-center col-span-full py-20 font-black uppercase tracking-widest opacity-20">Архив пуст</p>';
+        contentDiv.innerHTML = '<p class="text-gray-600 text-center col-span-full py-20 uppercase font-black opacity-20">Пусто</p>';
         return;
     }
     contentDiv.innerHTML = items.map((item, idx) => `
@@ -82,9 +69,9 @@ function render(items) {
                 <span class="neon-text">${item.subject}</span>
                 <span class="opacity-30">${item.type}</span>
             </div>
-            <h3 class="text-xl font-bold mb-8 leading-tight h-14 overflow-hidden">${item.title}</h3>
-            <a href="${item.link}" target="_blank" class="btn-open block w-full py-4 rounded-2xl font-black text-[10px] uppercase text-center tracking-widest transition-all active:scale-95">
-                Открыть доступ
+            <h3 class="text-xl font-bold mb-8 h-14 overflow-hidden">${item.title}</h3>
+            <a href="${item.link}" target="_blank" class="btn-open block w-full py-4 rounded-2xl font-black text-[10px] uppercase text-center transition-all active:scale-95">
+                Открыть
             </a>
         </div>
     `).join('');
