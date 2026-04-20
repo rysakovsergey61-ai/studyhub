@@ -1,7 +1,14 @@
 const contentDiv = document.getElementById('content');
 const searchInput = document.getElementById('search');
 let database = [];
-let currentSection = 'практика'; // По умолчанию открыты практики
+let currentSection = 'практика';
+
+// Полный список твоих предметов
+const allSubjects = [
+    "Иностранный язык", "Математика", "История", "Литература", 
+    "Физика", "Биология", "Информатика", "Русский Язык", 
+    "Индивидуальный проект", "Химия", "География", "Обществознание"
+];
 
 function toggleMenu() {
     const menu = document.getElementById('color-menu');
@@ -17,20 +24,10 @@ function setTheme(color) {
     mainBtn.style.boxShadow = `0 0 15px ${color}`;
 }
 
-// Переключение разделов
 function setSection(section) {
     currentSection = section;
-    
-    // Визуальное переключение вкладок
-    document.getElementById('tab-pract').classList.remove('active');
-    document.getElementById('tab-lect').classList.remove('active');
-    
-    if(section === 'практика') {
-        document.getElementById('tab-pract').classList.add('active');
-    } else {
-        document.getElementById('tab-lect').classList.add('active');
-    }
-    
+    document.getElementById('tab-pract').classList.toggle('active', section === 'практика');
+    document.getElementById('tab-lect').classList.toggle('active', section === 'лекция');
     applyFilters();
 }
 
@@ -41,39 +38,52 @@ fetch('data.json')
     .then(res => res.json())
     .then(data => {
         database = data;
-        render(data);
+        applyFilters();
         searchInput.oninput = () => applyFilters();
     });
 
 function applyFilters() {
     const query = searchInput.value.toLowerCase();
-    
-    // Сначала фильтруем по типу (лекция/практика)
     let filtered = database.filter(i => i.type.toLowerCase() === currentSection);
     
-    // Потом по поиску
-    filtered = filtered.filter(i => 
-        i.title.toLowerCase().includes(query) || i.subject.toLowerCase().includes(query)
-    );
-    
-    render(filtered);
-}
-
-function render(items) {
-    if (items.length === 0) {
-        contentDiv.innerHTML = '<p class="text-gray-600 text-center col-span-full py-20 font-black uppercase opacity-20">В этом разделе пока ничего нет</p>';
-        return;
+    if (query) {
+        filtered = filtered.filter(i => 
+            i.title.toLowerCase().includes(query) || i.subject.toLowerCase().includes(query)
+        );
     }
     
-    contentDiv.innerHTML = items.map((item, idx) => `
-        <div class="glass-card p-8 rounded-[2.5rem] animate__animated animate__fadeInUp" style="animation-delay: ${idx * 0.05}s">
-            <div class="mb-4">
-                <span class="neon-text text-[10px] font-black uppercase tracking-widest">${item.subject}</span>
-            </div>
-            <h3 class="text-xl font-bold mb-8 leading-tight h-14 overflow-hidden">${item.title}</h3>
-            <a href="${item.link}" target="_blank" class="btn-open block w-full py-4 rounded-2xl font-black text-[10px] uppercase text-center transition-all">
-                Открыть материал
-            </a>
-        </div>
-    `).join('');
+    renderGrouped(filtered);
+}
+
+function renderGrouped(items) {
+    if (items.length === 0) {
+        contentDiv.innerHTML = '<div class="py-20 text-center opacity-20 font-black uppercase italic tracking-widest">Ничего не найдено</div>';
+        return;
+    }
+
+    // Группировка данных по предметам
+    let html = '';
+    
+    allSubjects.forEach(subject => {
+        const subjectItems = items.filter(i => i.subject.toLowerCase() === subject.toLowerCase());
+        
+        if (subjectItems.length > 0) {
+            html += `
+                <div class="animate__animated animate__fadeIn">
+                    <h2 class="subject-group-title neon-text">${subject}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${subjectItems.map(item => `
+                            <div class="glass-card p-6 rounded-[2rem]">
+                                <div class="text-[9px] uppercase tracking-widest opacity-40 mb-3">${item.type}</div>
+                                <h3 class="text-lg font-bold mb-6 leading-tight">${item.title}</h3>
+                                <a href="${item.link}" target="_blank" class="btn-open">Открыть</a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    contentDiv.innerHTML = html || '<div class="py-20 text-center opacity-20 font-black uppercase italic tracking-widest">В этом разделе нет материалов по предметам</div>';
 }

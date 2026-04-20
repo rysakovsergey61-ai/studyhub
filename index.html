@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив ИМСИТА | Sections</title>
+    <title>Архив ИМСИТА | v4.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root { --neon-color: #ffffff; --bg-dark: #000000; }
-        body { background: radial-gradient(circle at center, #111 0%, var(--bg-dark) 100%); min-height: 100vh; color: #fff; transition: all 0.4s ease; }
+        body { background: radial-gradient(circle at center, #111 0%, var(--bg-dark) 100%); min-height: 100vh; color: #fff; transition: all 0.4s ease; overflow-x: hidden; }
 
-        /* Панель стиля */
         .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 100; }
-        .theme-btn { background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); padding: 10px 22px; border-radius: 12px; font-weight: 900; font-size: 11px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 15px var(--neon-color); }
-        .color-menu { display: none; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 25px; grid-template-columns: repeat(6, 1fr); gap: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); width: 320px; }
+        .theme-btn { background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); padding: 10px 22px; border-radius: 12px; font-weight: 900; font-size: 11px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 15px var(--neon-color); transition: 0.3s; }
+        
+        .color-menu { display: none; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 25px; grid-template-columns: repeat(6, 17fr); gap: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); width: 320px; }
         .color-dot { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 0 12px var(--dot-color); background-color: var(--dot-color); transition: 0.3s; }
         .color-dot:hover { transform: scale(1.2); box-shadow: 0 0 25px var(--dot-color); border-color: #fff; }
 
-        /* Стили разделов */
-        .section-tab { cursor: pointer; padding: 20px; border-radius: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s; text-align: center; }
-        .section-tab.active { border: 2px solid var(--neon-color); box-shadow: 0 0 25px var(--neon-color); background: rgba(255,255,255,0.05); }
-        .section-tab:hover:not(.active) { background: rgba(255,255,255,0.05); transform: translateY(-3px); }
-
+        .section-tab { cursor: pointer; padding: 25px; border-radius: 30px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s; text-align: center; }
+        .section-tab.active { border: 2px solid var(--neon-color); box-shadow: 0 0 30px var(--neon-color); background: rgba(255,255,255,0.05); }
+        
+        .subject-group-title { border-left: 4px solid var(--neon-color); padding-left: 15px; margin: 40px 0 20px 0; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; font-size: 1.5rem; }
         .neon-text { color: var(--neon-color); text-shadow: 0 0 10px var(--neon-color); }
-        #search { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; outline: none; }
+        
+        #search { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; outline: none; transition: 0.3s; }
         #search:focus { border-color: var(--neon-color); box-shadow: 0 0 20px var(--neon-color); }
 
-        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); transition: 0.3s; }
-        .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 25px var(--neon-color); transform: translateY(-8px); }
-        .btn-open { border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .btn-open:hover { background: var(--neon-color); color: #000; font-weight: 900; }
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); transition: 0.3s; position: relative; overflow: hidden; }
+        .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 20px var(--neon-color); transform: scale(1.02); }
+        
+        .btn-open { border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; display: block; width: 100%; padding: 12px 0; border-radius: 15px; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+        .btn-open:hover { background: var(--neon-color); color: #000; box-shadow: 0 0 15px var(--neon-color); }
     </style>
 </head>
 <body class="font-sans antialiased px-4 py-12">
     
     <div class="theme-panel">
         <button onclick="toggleMenu()" id="main-theme-btn" class="theme-btn">Стиль</button>
-        <div id="color-menu" class="color-menu animate__animated animate__fadeIn">
+        <div id="color-menu" class="color-menu">
             <div class="color-dot" style="--dot-color: #ffffff;" onclick="setTheme('#ffffff')"></div>
             <div class="color-dot" style="--dot-color: #ff0000;" onclick="setTheme('#ff0000')"></div>
             <div class="color-dot" style="--dot-color: #ff8800;" onclick="setTheme('#ff8800')"></div>
@@ -53,26 +54,26 @@
     <div class="max-w-6xl mx-auto">
         <header class="text-center mb-12 animate__animated animate__fadeInDown">
             <h1 class="text-5xl md:text-7xl font-black mb-4 uppercase italic">Архив<span class="neon-text"> ИМСИТА</span></h1>
-            <p class="text-gray-500 tracking-widest uppercase text-sm">Учебные материалы по разделам</p>
+            <p class="text-gray-500 tracking-widest uppercase text-xs">Каталог учебных дисциплин</p>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate__animated animate__fadeInUp">
             <div onclick="setSection('практика')" id="tab-pract" class="section-tab active">
-                <div class="text-4xl font-black mb-1">ПРАКТИКИ</div>
-                <div class="text-[10px] uppercase tracking-[0.3em] opacity-40">Задания и проекты</div>
+                <div class="text-3xl font-black mb-1 italic">ПРАКТИКИ</div>
+                <div class="text-[9px] uppercase tracking-[0.4em] opacity-50">Прикладные задания</div>
             </div>
             <div onclick="setSection('лекция')" id="tab-lect" class="section-tab">
-                <div class="text-4xl font-black mb-1">ЛЕКЦИИ</div>
-                <div class="text-[10px] uppercase tracking-[0.3em] opacity-40">Конспекты и теория</div>
+                <div class="text-3xl font-black mb-1 italic">ЛЕКЦИИ</div>
+                <div class="text-[9px] uppercase tracking-[0.4em] opacity-50">Теоретическая база</div>
             </div>
         </div>
 
-        <div class="relative mb-12 animate__animated animate__fadeIn">
-            <input type="text" id="search" placeholder="Поиск внутри раздела..." 
-                   class="w-full px-8 py-6 rounded-3xl text-xl transition-all">
+        <div class="mb-12">
+            <input type="text" id="search" placeholder="Найти работу или предмет..." 
+                   class="w-full px-8 py-5 rounded-2xl text-lg transition-all">
         </div>
 
-        <div id="content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        <div id="content"></div>
     </div>
 
     <script src="scripts.js"></script>
