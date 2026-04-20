@@ -10,28 +10,30 @@
         :root { --neon-color: #bc13fe; --bg-dark: #000000; }
         body { background: #000; min-height: 100vh; color: #fff; font-family: sans-serif; overflow-x: hidden; }
 
+        /* Стиль панели */
         .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 100; }
         .theme-btn { background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); padding: 8px 16px; border-radius: 8px; font-weight: 900; font-size: 10px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 10px var(--neon-color); }
         
         .color-menu { display: none; position: absolute; top: 50px; right: 0; background: rgba(10,10,10,0.95); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 20px; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 250px; }
         .color-dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
 
-        /* Кнопки фильтра */
+        /* Кнопки ПРАКТИКИ / ЛЕКЦИИ */
         .tab-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto 40px; }
-        .section-tab { cursor: pointer; padding: 30px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; font-size: 2rem; font-weight: 900; italic; }
+        .section-tab { cursor: pointer; padding: 30px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; font-size: 2rem; font-weight: 900; text-transform: uppercase; }
         .section-tab.active { border: 2px solid var(--neon-color); box-shadow: 0 0 25px var(--neon-color); background: rgba(255,255,255,0.05); }
 
-        /* Сетка предметов */
+        /* Сетка предметов по горизонтали */
         .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding-bottom: 50px; }
 
+        /* Карточка как на скрине */
         .glass-card { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 25px; border-radius: 30px; transition: 0.3s; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px;
+            padding: 25px; border-radius: 35px; transition: 0.3s; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 220px;
         }
         .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 15px var(--neon-color); transform: translateY(-5px); }
 
-        .subject-name { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 20px; line-height: 1.2; color: var(--neon-color); }
+        .subject-name { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 20px; color: var(--neon-color); }
 
         .btn-open { 
             border: 1px solid rgba(255,255,255,0.2); padding: 12px 24px; border-radius: 15px; 
