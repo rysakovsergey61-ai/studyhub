@@ -3,73 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив ИМСИТА</title>
+    <title>Архив ИМСИТА | PRO Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        body { background: radial-gradient(circle at top right, #1e293b, #0f172a); min-height: 100vh; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5); border-color: rgba(59, 130, 246, 0.4); }
-        .subj-btn { border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.2s; }
-        .subj-btn.active-subj { background: #3b82f6; border-color: #3b82f6; color: white; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
-        .stat-card { cursor: pointer; transition: all 0.3s; }
-        .stat-active { border: 1px solid #3b82f6; background: rgba(59, 130, 246, 0.15); }
+        :root {
+            --neon-color: #ffffff; /* По умолчанию - белый неон */
+            --bg-dark: #000000;
+        }
+
+        body { 
+            background: radial-gradient(circle at center, #111 0%, var(--bg-dark) 100%);
+            min-height: 100vh; color: #fff; transition: background 0.5s ease; 
+        }
+
+        /* Кнопка и меню выбора цвета */
+        .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 100; }
+        .theme-btn {
+            background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color);
+            padding: 8px 18px; border-radius: 12px; font-weight: 900; font-size: 10px;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-color); transition: all 0.3s;
+        }
+        .color-menu {
+            display: none; position: absolute; top: 50px; right: 0;
+            background: rgba(0,0,0,0.95); border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px; border-radius: 20px; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .color-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.1); transition: transform 0.2s; }
+        .color-dot:hover { transform: scale(1.2); border-color: #fff; }
+
+        /* Динамический неон */
+        .neon-text { color: var(--neon-color); text-shadow: 0 0 10px var(--neon-color); transition: all 0.4s; }
+        .stat-active { border: 2px solid var(--neon-color) !important; box-shadow: 0 0 20px var(--neon-color) !important; }
+        
+        .stat-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.3s; }
+        .stat-card:hover { background: rgba(255,255,255,0.05); transform: translateY(-3px); }
+
+        .subj-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s; }
+        .subj-btn.active-subj { border-color: var(--neon-color); color: var(--neon-color); box-shadow: 0 0 15px var(--neon-color); }
+        
+        #search { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; transition: all 0.3s; }
+        #search:focus { border-color: var(--neon-color); box-shadow: 0 0 20px var(--neon-color); outline: none; }
+
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s; }
+        .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 25px var(--neon-color); transform: translateY(-8px); }
+        
+        .btn-open { border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+        .btn-open:hover { background: var(--neon-color); color: #000; font-weight: 900; }
     </style>
 </head>
-<body class="text-slate-100 font-sans antialiased">
+<body class="font-sans antialiased">
+    
+    <div class="theme-panel">
+        <button onclick="toggleMenu()" id="main-theme-btn" class="theme-btn">Стиль</button>
+        <div id="color-menu" class="color-menu animate__animated animate__fadeIn">
+            <div class="color-dot" style="background: #ffffff;" onclick="setTheme('#ffffff')"></div>
+            <div class="color-dot" style="background: #00f2ff;" onclick="setTheme('#00f2ff')"></div>
+            <div class="color-dot" style="background: #39ff14;" onclick="setTheme('#39ff14')"></div>
+            <div class="color-dot" style="background: #bc13fe;" onclick="setTheme('#bc13fe')"></div>
+            <div class="color-dot" style="background: #ff0055;" onclick="setTheme('#ff0055')"></div>
+            <div class="color-dot" style="background: #ffe000;" onclick="setTheme('#ffe000')"></div>
+        </div>
+    </div>
+
     <div class="max-w-6xl mx-auto px-4 py-12">
-        
-        <header class="text-center mb-12 animate__animated animate__fadeInDown">
-            <h1 class="text-5xl md:text-6xl font-black mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500 uppercase">
-                Архив<span class="text-blue-500"> ИМСИТА</span>
+        <header class="text-center mb-16 animate__animated animate__fadeInDown">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tighter uppercase italic">
+                Архив<span class="neon-text"> ИМСИТА</span>
             </h1>
-            <p class="text-slate-400 text-lg italic">Единый репозиторий: все предметы и проекты.</p>
+            <p class="text-gray-500 text-lg tracking-widest uppercase font-light">Digital Repository / v3.0</p>
         </header>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate__animated animate__fadeInUp">
-            <div onclick="filterByType('all')" class="glass p-4 rounded-2xl text-center stat-card stat-active" id="stat-all">
-                <div id="count-total" class="text-2xl font-bold text-blue-400">0</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black tracking-widest">Всего работ</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate__animated animate__fadeInUp">
+            <div onclick="filterByType('all')" class="p-8 rounded-[2rem] text-center stat-card stat-active" id="stat-all">
+                <div id="count-total" class="text-5xl font-black mb-1">0</div>
+                <div class="text-[9px] uppercase font-black tracking-widest opacity-40">Всего работ</div>
             </div>
-            <div onclick="filterByType('практика')" class="glass p-4 rounded-2xl text-center stat-card border-l-2 border-l-emerald-500" id="stat-pract">
-                <div id="count-pract" class="text-2xl font-bold text-emerald-400">0</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black tracking-widest">Практики</div>
+            <div onclick="filterByType('практика')" class="p-8 rounded-[2rem] text-center stat-card" id="stat-pract">
+                <div id="count-pract" class="text-5xl font-black mb-1 text-emerald-500">0</div>
+                <div class="text-[9px] uppercase font-black tracking-widest opacity-40">Практики</div>
             </div>
-            <div onclick="filterByType('лекция')" class="glass p-4 rounded-2xl text-center stat-card border-l-2 border-l-purple-500" id="stat-lect">
-                <div id="count-lect" class="text-2xl font-bold text-purple-400">0</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black tracking-widest">Лекции</div>
+            <div onclick="filterByType('лекция')" class="p-8 rounded-[2rem] text-center stat-card" id="stat-lect">
+                <div id="count-lect" class="text-5xl font-black mb-1 text-purple-500">0</div>
+                <div class="text-[9px] uppercase font-black tracking-widest opacity-40">Лекции</div>
             </div>
-            <div class="glass p-4 rounded-2xl text-center border-l-2 border-l-orange-500">
-                <div id="count-subj" class="text-2xl font-bold text-orange-400">0</div>
-                <div class="text-[10px] text-slate-500 uppercase font-black tracking-widest">Предметы</div>
-            </div>
-        </div>
-
-        <div class="relative mb-8 animate__animated animate__fadeIn">
-            <input type="text" id="search" placeholder="Поиск по названию или предмету..." 
-                   class="glass w-full px-6 py-4 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none text-lg transition-all">
-        </div>
-
-        <div class="mb-12 animate__animated animate__fadeIn">
-            <h2 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-4 ml-1">Фильтр по предметам</h2>
-            <div class="flex flex-wrap gap-2" id="subject-filters">
-                <button onclick="filterBySubject('all')" class="subj-btn active-subj px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Все</button>
-                <button onclick="filterBySubject('Биология')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Биология</button>
-                <button onclick="filterBySubject('География')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">География</button>
-                <button onclick="filterBySubject('Индивидуальный проект')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider text-orange-400 border-orange-500/20">Индивидуальный проект</button>
-                <button onclick="filterBySubject('Иностранный язык')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Иностранный язык</button>
-                <button onclick="filterBySubject('Информатика')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Информатика</button>
-                <button onclick="filterBySubject('История')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">История</button>
-                <button onclick="filterBySubject('Литература')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Литература</button>
-                <button onclick="filterBySubject('Математика')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Математика</button>
-                <button onclick="filterBySubject('Обществознание')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Обществознание</button>
-                <button onclick="filterBySubject('Русский Язык')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Русский Язык</button>
-                <button onclick="filterBySubject('Физика')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Физика</button>
-                <button onclick="filterBySubject('Химия')" class="subj-btn px-4 py-2 rounded-xl glass text-xs font-bold uppercase tracking-wider">Химия</button>
+            <div class="p-8 rounded-[2rem] text-center stat-card border-dashed">
+                <div id="count-subj" class="text-5xl font-black mb-1 text-orange-500">0</div>
+                <div class="text-[9px] uppercase font-black tracking-widest opacity-40">Предметы</div>
             </div>
         </div>
 
-        <div id="content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div class="relative mb-12 animate__animated animate__fadeIn">
+            <input type="text" id="search" placeholder="Поиск по архиву..." 
+                   class="w-full px-8 py-6 rounded-3xl text-xl transition-all">
+        </div>
+
+        <div class="mb-16 animate__animated animate__fadeIn">
+            <div class="flex flex-wrap gap-3" id="subject-filters">
+                <button onclick="filterBySubject('all')" class="subj-btn active-subj px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">Все</button>
+                <button onclick="filterBySubject('Информатика')" class="subj-btn px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">Информатика</button>
+                <button onclick="filterBySubject('Математика')" class="subj-btn px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">Математика</button>
+                <button onclick="filterBySubject('История')" class="subj-btn px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">История</button>
+                <button onclick="filterBySubject('Физика')" class="subj-btn px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">Физика</button>
+                <button onclick="filterBySubject('Проект')" class="subj-btn px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter">Проекты</button>
+            </div>
+        </div>
+
+        <div id="content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
     <script src="scripts.js"></script>
 </body>
