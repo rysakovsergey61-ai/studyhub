@@ -11,43 +11,68 @@ const colors = [
     '#99ff99', '#ff9999', '#ffff99', '#ff99ff', '#99ffff', '#ffffff'
 ];
 
+// Инициализация темы
 function initTheme() {
     const menu = document.getElementById('color-menu');
-    menu.innerHTML = colors.map(c => `<div class="color-dot" style="background: ${c}" onclick="setTheme('${c}')"></div>`).join('');
-    setTheme(localStorage.getItem('user-neon') || '#bc13fe');
+    if (menu) {
+        menu.innerHTML = colors.map(c => `
+            <div class="color-dot" style="background: ${c}" onclick="setTheme('${c}')"></div>
+        `).join('');
+    }
+    
+    const saved = localStorage.getItem('user-neon') || '#bc13fe';
+    setTheme(saved);
 }
 
-function toggleMenu() {
+// Открытие/закрытие меню — ИСПРАВЛЕНО
+window.toggleMenu = function() {
     const menu = document.getElementById('color-menu');
-    menu.style.display = (menu.style.display === 'grid') ? 'none' : 'grid';
+    if (menu) {
+        const isGrid = window.getComputedStyle(menu).display === 'grid';
+        menu.style.display = isGrid ? 'none' : 'grid';
+    }
 }
 
-function setTheme(color) {
+// Установка цвета
+window.setTheme = function(color) {
     document.documentElement.style.setProperty('--neon-color', color);
     localStorage.setItem('user-neon', color);
     const btn = document.getElementById('main-theme-btn');
-    if(btn) btn.style.borderColor = color;
+    const menu = document.getElementById('color-menu');
+    if (btn) btn.style.borderColor = color;
+    if (menu) menu.style.borderColor = color;
 }
 
-function setSection(section) {
+// Разделы
+window.setSection = function(section) {
     currentSection = section;
     document.getElementById('tab-pract').classList.toggle('active', section === 'практика');
     document.getElementById('tab-lect').classList.toggle('active', section === 'лекция');
     render();
 }
 
+// Загрузка данных
 fetch('data.json')
     .then(res => res.json())
     .then(data => {
         database = data;
-        document.getElementById('stat-count').innerText = data.length;
+        const stat = document.getElementById('stat-count');
+        if (stat) stat.innerText = data.length;
         render();
     });
 
 function render() {
+    if (!contentDiv) return;
     const query = searchInput.value.toLowerCase();
-    const filtered = database.filter(i => i.type.toLowerCase().replace('пратика', 'практика') === currentSection);
-    const unique = [...new Set(filtered.map(i => i.subject))].filter(s => s.toLowerCase().includes(query));
+    
+    // Фильтр и исправление опечатки "пратика" из твоего JSON
+    const filtered = database.filter(i => {
+        const type = i.type.toLowerCase().replace('пратика', 'практика');
+        return type === currentSection;
+    });
+
+    const unique = [...new Set(filtered.map(i => i.subject))]
+        .filter(s => s.toLowerCase().includes(query));
 
     contentDiv.innerHTML = unique.map(subject => `
         <div class="glass-card animate__animated animate__fadeInUp">
@@ -57,9 +82,11 @@ function render() {
     `).join('');
 }
 
-function goToSubject(name) {
+window.goToSubject = function(name) {
     window.location.href = `subject.html?name=${encodeURIComponent(name)}&type=${encodeURIComponent(currentSection)}`;
 }
 
-searchInput.oninput = render;
-initTheme();
+if (searchInput) searchInput.oninput = render;
+
+// Запуск
+document.addEventListener('DOMContentLoaded', initTheme);

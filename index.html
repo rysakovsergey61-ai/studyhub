@@ -10,59 +10,59 @@
         :root { --neon-color: #bc13fe; }
         body { background: #000; min-height: 100vh; color: #fff; font-family: sans-serif; overflow-x: hidden; }
 
-        /* Панель выбора цвета */
-        .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 1000; }
-        .theme-btn { background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); padding: 8px 16px; border-radius: 8px; font-weight: 900; font-size: 10px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 10px var(--neon-color); }
+        /* ПАНЕЛЬ СТИЛЯ — ИСПРАВЛЕНО */
+        .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 9999; }
+        .theme-btn { 
+            background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); 
+            padding: 10px 20px; border-radius: 12px; font-weight: 900; 
+            font-size: 14px; text-transform: uppercase; cursor: pointer; 
+            box-shadow: 0 0 15px var(--neon-color); transition: 0.3s;
+        }
+        .theme-btn:hover { transform: scale(1.05); }
         
         .color-menu { 
-            display: none; position: absolute; top: 50px; right: 0; 
-            background: rgba(10,10,10,0.98); border: 1px solid rgba(255,255,255,0.1); 
+            display: none; position: absolute; top: 60px; right: 0; 
+            background: rgba(15,15,15,0.95); border: 1px solid var(--neon-color); 
             padding: 15px; border-radius: 20px; grid-template-columns: repeat(6, 1fr); 
-            gap: 8px; width: 250px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            gap: 10px; width: 260px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
-        .color-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
-        .color-dot:hover { transform: scale(1.2); border-color: #fff; }
+        .color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.1); transition: 0.2s; }
+        .color-dot:hover { transform: scale(1.2); border-color: #fff; box-shadow: 0 0 10px #fff; }
 
-        /* Описание архива */
+        /* ОСТАЛЬНЫЕ СТИЛИ */
         .hero-section { background: linear-gradient(135deg, rgba(188, 19, 254, 0.1) 0%, transparent 100%); border-radius: 40px; padding: 50px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05); }
-        
         .tab-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto 40px; }
         .section-tab { cursor: pointer; padding: 30px; border-radius: 25px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-align: center; font-size: 2rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
         .section-tab.active { border: 2px solid var(--neon-color); box-shadow: 0 0 25px var(--neon-color); background: rgba(255,255,255,0.05); }
-
         .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; border-radius: 35px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .glass-card:hover { border-color: var(--neon-color); box-shadow: 0 0 20px var(--neon-color); transform: scale(1.02); }
-
         .subject-name { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 25px; color: var(--neon-color); }
-        .btn-open { border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 15px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; transition: 0.3s; width: 100%; text-align: center; background: transparent; color: white; }
+        .btn-open { border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 15px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; transition: 0.3s; width: 100%; text-align: center; color: white; }
         .btn-open:hover { background: var(--neon-color); color: #000; box-shadow: 0 0 15px var(--neon-color); }
-
         #search { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 15px; padding: 18px 25px; width: 100%; outline: none; margin-bottom: 30px; }
         .neon-text { text-shadow: 0 0 15px var(--neon-color); }
     </style>
 </head>
 <body class="px-6 py-10">
+
     <div class="theme-panel">
-        <button onclick="toggleMenu()" id="main-theme-btn" class="theme-btn">Стиль</button>
-        <div id="color-menu" class="color-menu"></div>
+        <button onclick="toggleMenu()" id="main-theme-btn" class="theme-btn">стиль</button>
+        <div id="color-menu" class="color-menu">
+            </div>
     </div>
 
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-10">
-            <h1 class="text-6xl font-black italic uppercase tracking-tighter animate__animated animate__fadeInDown">Архив <span class="neon-text">ИМСИТА</span></h1>
+            <h1 class="text-6xl font-black italic uppercase tracking-tighter">Архив <span class="neon-text">ИМСИТА</span></h1>
         </header>
 
-        <div class="hero-section animate__animated animate__fadeIn">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div>
-                    <h2 class="text-3xl font-bold mb-4 italic uppercase">Образовательный репозиторий</h2>
-                    <p class="text-gray-400 text-lg mb-6">Централизованное хранилище всех материалов ГТА. Выберите тип работ для начала.</p>
-                    <div class="inline-block bg-white/5 border border-white/10 px-6 py-3 rounded-2xl">
-                        <span class="text-gray-500 font-bold uppercase text-[10px] block">Всего материалов</span>
-                        <span class="text-3xl font-black neon-text" id="stat-count">0</span>
-                    </div>
-                </div>
+        <div class="hero-section">
+            <h2 class="text-3xl font-bold mb-4 uppercase">Образовательный репозиторий</h2>
+            <p class="text-gray-400 mb-6">Выбирай раздел и находи нужные ГТА материалы.</p>
+            <div class="inline-block bg-white/5 border border-white/10 px-6 py-3 rounded-2xl">
+                <span class="text-3xl font-black neon-text" id="stat-count">0</span>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
             <div onclick="setSection('лекция')" id="tab-lect" class="section-tab">ЛЕКЦИИ</div>
         </div>
 
-        <input type="text" id="search" placeholder="Поиск предмета...">
+        <input type="text" id="search" placeholder="Поиск по предметам...">
         <div id="content" class="subjects-grid"></div>
     </div>
 
