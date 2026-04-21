@@ -14,13 +14,14 @@
         .theme-btn { 
             background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); 
             padding: 10px 20px; border-radius: 12px; font-weight: 900; color: #fff;
-            box-shadow: 0 0 15px var(--neon-color); cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-color); cursor: pointer; text-transform: uppercase;
         }
         .color-menu { 
             display: none; position: absolute; top: 60px; right: 0; 
             background: #111; border: 1px solid #333; border-radius: 15px; padding: 10px; grid-template-columns: repeat(4, 1fr); gap: 8px; 
         }
-        .color-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+        .color-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .color-dot:hover { border-color: #fff; }
         .glass-card { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
             border-radius: 25px; padding: 25px; transition: 0.3s;
@@ -29,14 +30,14 @@
         .hero-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 35px; padding: 40px; }
         .section-tab { 
             padding: 12px 25px; border-radius: 15px; cursor: pointer; font-weight: 900; 
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-transform: uppercase;
         }
-        .section-tab.active { background: var(--neon-color); color: #000; }
+        .section-tab.active { background: var(--neon-color); color: #000; border-color: var(--neon-color); }
         .search-input { 
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 20px; padding: 18px 25px; width: 100%; color: #fff; outline: none;
+            border-radius: 20px; padding: 18px 25px; width: 100%; color: #fff; outline: none; font-size: 18px;
         }
-        .btn-open { background: var(--neon-color); color: #000; font-weight: 900; padding: 12px; border-radius: 12px; width: 100%; margin-top: 15px; }
+        .btn-open { background: var(--neon-color); color: #000; font-weight: 900; padding: 12px; border-radius: 12px; width: 100%; margin-top: 15px; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body onload="initTheme()">
@@ -52,17 +53,17 @@
             <a href="https://t.me/arhivImsita" target="_blank" class="text-xs font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">TG CHANNEL</a>
         </header>
 
-        <div class="hero-section mb-10 border-2 border-[--neon-color] animate__animated animate__fadeIn" style="border-color: var(--neon-color);">
+        <div class="hero-section mb-10 border-2 animate__animated animate__fadeIn" style="border-color: var(--neon-color);">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
+                <div class="text-center md:text-left">
                     <h2 class="text-2xl font-black uppercase neon-text">Премиум доступ</h2>
-                    <p class="text-gray-400">Все платные работы и эксклюзивные лекции в Telegram.</p>
+                    <p class="text-gray-400">Все платные работы и эксклюзивные материалы в нашем Telegram.</p>
                 </div>
-                <a href="https://t.me/arhivImsita" target="_blank" class="bg-[--neon-color] text-black px-8 py-4 rounded-xl font-black uppercase shadow-[0_0_20px_var(--neon-color)] hover:scale-105 transition" style="background-color: var(--neon-color);">ПОДПИСАТЬСЯ</a>
+                <a href="https://t.me/arhivImsita" target="_blank" class="text-black px-8 py-4 rounded-xl font-black uppercase shadow-lg hover:scale-105 transition" style="background-color: var(--neon-color);">ПОДПИСАТЬСЯ</a>
             </div>
         </div>
 
-        <div class="tab-container flex gap-4 mb-8">
+        <div class="flex gap-4 mb-8">
             <div onclick="setSection('практика')" id="tab-pract" class="section-tab active">ПРАКТИКИ</div>
             <div onclick="setSection('лекция')" id="tab-lect" class="section-tab">ЛЕКЦИИ</div>
         </div>

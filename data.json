@@ -3,132 +3,18 @@
     "title": "Лабораторная работа №1: Кинематика",
     "subject": "Физика",
     "type": "практика",
-    "link": "https://example.com/phys1"
-  },
-  {
-    "title": "Основы тригонометрии: Конспект",
-    "subject": "Математика",
-    "type": "практика",
-    "link": "https://example.com/math_lect"
+    "link": "https://t.me/arhivImsita"
   },
   {
     "title": "Алгоритмы и структуры данных",
     "subject": "Информатика",
-    "type": "пратика",
-    "link": "https://example.com/it_theory"
-  },
-  {
-    "title": "История России: XX век",
-    "subject": "История",
     "type": "практика",
-    "link": "https://example.com/hist_lect"
+    "link": "https://t.me/arhivImsita"
   },
   {
-    "title": "Present Simple vs Present Continuous",
-    "subject": "Иностранный язык",
-    "type": "практика",
-    "link": "https://example.com/eng_pract"
-  },
-  {
-    "title": "Органическая химия: Углеводороды",
-    "subject": "Химия",
-    "type": "практика",
-    "link": "https://example.com/chem_theory"
-  },
-  {
-    "title": "Разбор романа 'Война и мир'",
-    "subject": "Литература",
-    "type": "практика",
-    "link": "https://example.com/lit_lect"
-  },
-  {
-    "title": "Сочинение по теме: Моя будущая профессия",
-    "subject": "Русский Язык",
-    "type": "практика",
-    "link": "https://example.com/rus_pract"
-  },
-  {
-    "title": "Лабораторная работа №1: Кинематика",
-    "subject": "География",
-    "type": "практика",
-    "link": "https://example.com/phys1"
-  },
-  {
-    "title": "Сочинение по теме: Моя будущая профессия",
-    "subject": "Биология",
-    "type": "практика",
-    "link": "https://example.com/rus_pract"
-  },
-  {
-    "title": "Лабораторная работа №1: Кинематика",
-    "subject": "Обществознание",
-    "type": "практика",
-    "link": "https://example.com/phys1"
-  },
-  {
-    "title": "Лабораторная работа №1: Кинематика",
-    "subject": "Физика",
-    "type": "лекция",
-    "link": "https://example.com/phys1"
-  },
-  {
-    "title": "Основы тригонометрии: Конспект",
-    "subject": "Математика",
-    "type": "лекция",
-    "link": "https://example.com/math_lect"
-  },
-  {
-    "title": "Алгоритмы и структуры данных",
+    "title": "Лекция: Введение в Python",
     "subject": "Информатика",
     "type": "лекция",
-    "link": "https://example.com/it_theory"
-  },
-  {
-    "title": "История России: XX век",
-    "subject": "История",
-    "type": "лекция",
-    "link": "https://example.com/hist_lect"
-  },
-  {
-    "title": "Present Simple vs Present Continuous",
-    "subject": "Иностранный язык",
-    "type": "лекция",
-    "link": "https://example.com/eng_pract"
-  },
-  {
-    "title": "Органическая химия: Углеводороды",
-    "subject": "Химия",
-    "type": "лекция",
-    "link": "https://example.com/chem_theory"
-  },
-  {
-    "title": "Разбор романа 'Война и мир'",
-    "subject": "Литература",
-    "type": "лекция",
-    "link": "https://example.com/lit_lect"
-  },
-  {
-    "title": "Сочинение по теме: Моя будущая профессия",
-    "subject": "Русский Язык",
-    "type": "лекция",
-    "link": "https://example.com/rus_pract"
-  },
-  {
-    "title": "Лабораторная работа №1: Кинематика",
-    "subject": "География",
-    "type": "лекция",
-    "link": "https://example.com/phys1"
-  },
-  {
-    "title": "Сочинение по теме: Моя будущая профессия",
-    "subject": "Биология",
-    "type": "лекция",
-    "link": "https://example.com/rus_pract"
-  },
-  {
-    "title": "Лабораторная работа №1: Кинематика",
-    "subject": "Обществознание",
-    "type": "лекция",
-    "link": "https://example.com/phys1"
+    "link": "https://t.me/arhivImsita"
   }
 ]

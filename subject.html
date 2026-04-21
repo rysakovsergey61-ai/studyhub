@@ -14,14 +14,12 @@
             padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; 
             align-items: center; margin-bottom: 12px; transition: 0.3s;
         }
-        .topic-row:hover { border-color: var(--neon-color); background: rgba(255,255,255,0.05); }
-        .btn-link { background: var(--neon-color); color: #000; padding: 8px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; text-transform: uppercase; font-size: 12px; transition: 0.3s; }
-        .btn-link:hover { filter: brightness(1.2); transform: scale(1.05); }
+        .btn-link { background: var(--neon-color); color: #000; padding: 8px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; text-transform: uppercase; font-size: 12px; }
     </style>
 </head>
 <body>
     <div class="max-w-3xl mx-auto">
-        <a href="index.html" style="color: var(--neon-color); text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">← НАЗАД В АРХИВ</a>
+        <a href="index.html" style="color: var(--neon-color); text-decoration: none; font-weight: bold; text-transform: uppercase;">← НАЗАД В АРХИВ</a>
         <h1 id="subject-title" class="text-4xl font-black uppercase neon-text mt-8">...</h1>
         <div id="topics-list" class="mt-10"></div>
     </div>
@@ -37,14 +35,9 @@
 
         fetch('data.json').then(res => res.json()).then(data => {
             const filtered = data.filter(i => i.subject === name && i.type.toLowerCase().replace('пратика', 'практика') === type.toLowerCase());
-            const container = document.getElementById('topics-list');
-            if(filtered.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 uppercase font-bold">Тем пока нет...</p>';
-                return;
-            }
-            container.innerHTML = filtered.map(t => `
+            document.getElementById('topics-list').innerHTML = filtered.map(t => `
                 <div class="topic-row">
-                    <span class="font-bold uppercase tracking-tight">${t.title}</span>
+                    <span class="font-bold uppercase">${t.title}</span>
                     <a href="https://t.me/arhivImsita" target="_blank" class="btn-link">В ТЕЛЕГРАМ</a>
                 </div>
             `).join('');
