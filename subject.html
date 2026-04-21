@@ -5,37 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Темы материалов</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root { --neon-color: #bc13fe; }
-        body { background: #000; color: #fff; font-family: sans-serif; min-height: 100vh; padding: 40px 20px; }
-        .btn-back { color: var(--neon-color); font-weight: 800; text-transform: uppercase; text-decoration: none; margin-bottom: 40px; display: inline-block; transition: 0.3s; }
-        .btn-back:hover { text-shadow: 0 0 10px var(--neon-color); }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 40px 20px; }
+        .neon-text { color: var(--neon-color); text-shadow: 0 0 15px var(--neon-color); }
         .topic-row { 
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 25px 35px; border-radius: 25px; display: flex; 
-            justify-content: space-between; align-items: center; margin-bottom: 15px; transition: 0.3s;
+            padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; 
+            align-items: center; margin-bottom: 12px; transition: 0.3s;
         }
         .topic-row:hover { border-color: var(--neon-color); background: rgba(255,255,255,0.05); }
-        .neon-text { color: var(--neon-color); text-shadow: 0 0 15px var(--neon-color); }
-        .btn-link { 
-            background: var(--neon-color); color: #000; padding: 10px 25px; 
-            border-radius: 12px; font-weight: 900; text-transform: uppercase; 
-            text-decoration: none; font-size: 14px; transition: 0.3s;
-        }
+        .btn-link { background: var(--neon-color); color: #000; padding: 8px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; text-transform: uppercase; font-size: 12px; transition: 0.3s; }
         .btn-link:hover { filter: brightness(1.2); transform: scale(1.05); }
     </style>
 </head>
 <body>
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="btn-back">← Назад к списку</a>
-        
-        <header class="mb-12">
-            <h1 id="subject-title" class="text-5xl md:text-7xl font-black italic uppercase neon-text">...</h1>
-            <p id="section-label" class="text-gray-500 font-bold uppercase tracking-widest mt-4">РАЗДЕЛ</p>
-        </header>
-
-        <div id="topics-list" class="animate__animated animate__fadeInUp"></div>
+    <div class="max-w-3xl mx-auto">
+        <a href="index.html" style="color: var(--neon-color); text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">← НАЗАД В АРХИВ</a>
+        <h1 id="subject-title" class="text-4xl font-black uppercase neon-text mt-8">...</h1>
+        <div id="topics-list" class="mt-10"></div>
     </div>
 
     <script>
@@ -45,25 +33,19 @@
         const params = new URLSearchParams(window.location.search);
         const name = params.get('name');
         const type = params.get('type');
-
         document.getElementById('subject-title').innerText = name;
-        document.getElementById('section-label').innerText = type === 'лекция' ? 'ЛЕКЦИИ' : 'ПРАКТИКИ';
 
         fetch('data.json').then(res => res.json()).then(data => {
             const filtered = data.filter(i => i.subject === name && i.type.toLowerCase().replace('пратика', 'практика') === type.toLowerCase());
             const container = document.getElementById('topics-list');
-            
-            if (filtered.length === 0) {
-                container.innerHTML = '<p class="text-gray-500">Материалов пока нет...</p>';
+            if(filtered.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 uppercase font-bold">Тем пока нет...</p>';
                 return;
             }
-
             container.innerHTML = filtered.map(t => `
                 <div class="topic-row">
-                    <div class="text-xl font-bold uppercase pr-4">${t.title}</div>
-                    <a href="https://t.me/YOUR_CHANNEL_LINK" target="_blank" class="btn-link">
-                        Скачать в ТГ
-                    </a>
+                    <span class="font-bold uppercase tracking-tight">${t.title}</span>
+                    <a href="https://t.me/arhivImsita" target="_blank" class="btn-link">В ТЕЛЕГРАМ</a>
                 </div>
             `).join('');
         });

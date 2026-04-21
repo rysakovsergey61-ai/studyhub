@@ -1,13 +1,10 @@
 let database = [];
 let currentSection = 'практика';
 const contentDiv = document.getElementById('content');
-const searchInput = document.getElementById('search');
 
 const colors = [
     '#bc13fe', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff',
-    '#ff00ff', '#ffa500', '#ffc0cb', '#800000', '#008000', '#000080',
-    '#808000', '#800080', '#008080', '#c0c0c0', '#808080', '#9999ff',
-    '#99ff99', '#ff9999', '#ffff99', '#ff99ff', '#99ffff', '#ffffff'
+    '#ff00ff', '#ffa500', '#ffc0cb', '#ffffff'
 ];
 
 function initTheme() {
@@ -29,6 +26,9 @@ window.toggleMenu = function() {
 window.setTheme = function(color) {
     document.documentElement.style.setProperty('--neon-color', color);
     localStorage.setItem('user-neon', color);
+    // Обновляем цвет рекламной кнопки вручную, если нужно
+    const heroBtn = document.querySelector('.hero-section a');
+    if (heroBtn) heroBtn.style.backgroundColor = color;
 }
 
 window.setSection = function(section) {
@@ -42,14 +42,12 @@ fetch('data.json')
     .then(res => res.json())
     .then(data => {
         database = data;
-        const stat = document.getElementById('stat-count');
-        if (stat) stat.innerText = data.length;
         render();
     });
 
 function render() {
     if (!contentDiv) return;
-    const query = searchInput.value.toLowerCase();
+    const query = document.getElementById('search').value.toLowerCase();
     
     const filtered = database.filter(i => {
         const type = i.type.toLowerCase().replace('пратика', 'практика');
@@ -61,12 +59,8 @@ function render() {
 
     contentDiv.innerHTML = unique.map(subject => `
         <div class="glass-card animate__animated animate__fadeInUp">
-            <div class="subject-name">${subject}</div>
-            <button class="btn-open" onclick="goToSubject('${subject}')">Открыть темы</button>
+            <div class="text-xl font-black uppercase mb-4" style="line-height: 1.1;">${subject}</div>
+            <button class="btn-open" onclick="window.location.href='subject.html?name=${encodeURIComponent(subject)}&type=${currentSection}'">Открыть темы</button>
         </div>
     `).join('');
-}
-
-window.goToSubject = function(name) {
-    window.location.href = `subject.html?name=${encodeURIComponent(name)}&type=${currentSection}`;
 }
