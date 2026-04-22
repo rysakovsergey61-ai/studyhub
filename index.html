@@ -7,154 +7,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        :root { 
-            --neon-color: #bc13fe;
-            --grad-header: linear-gradient(135deg, #c41e3a 0%, #2d5016 100%);
-            --grad-footer: linear-gradient(135deg, #ffd700 0%, #9933ff 100%);
-            --grad-accent: linear-gradient(135deg, #00bfff 0%, #ffffff 100%);
-        }
-        body { 
-            background: linear-gradient(-45deg, #1a0d2e 0%, #2d1b4e 25%, #1a3a3a 50%, #3d1a1a 75%, #2d2844 100%);
-            background-size: 400% 400%;
-            animation: gradientBg 15s ease infinite;
-            min-height: 100vh; 
-            color: #fff; 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
-        }
-        @keyframes gradientBg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .neon-text { 
-            color: var(--neon-color); 
-            text-shadow: 0 0 10px var(--neon-color), 0 2px 4px rgba(0,0,0,0.5);
-        }
-        header {
-            background: var(--grad-header);
-            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
-        }
+        :root { --neon-color: #bc13fe; }
+        body { background: #000; min-height: 100vh; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .neon-text { color: var(--neon-color); text-shadow: 0 0 10px var(--neon-color); }
         .theme-panel { position: fixed; top: 20px; right: 20px; z-index: 9999; }
         .theme-btn { 
-            background: rgba(0,0,0,0.8); 
-            border: 2px solid var(--neon-color); 
-            padding: 10px 20px; 
-            border-radius: 12px; 
-            font-weight: 900; 
-            color: #fff;
-            box-shadow: 0 0 15px var(--neon-color);
-            cursor: pointer; 
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        .theme-btn:hover {
-            box-shadow: 0 0 25px var(--neon-color);
-            transform: scale(1.05);
+            background: rgba(0,0,0,0.8); border: 2px solid var(--neon-color); 
+            padding: 10px 20px; border-radius: 12px; font-weight: 900; color: #fff;
+            box-shadow: 0 0 15px var(--neon-color); cursor: pointer; text-transform: uppercase;
         }
         .color-menu { 
-            display: none; 
-            position: absolute; 
-            top: 60px; 
-            right: 0; 
-            background: rgba(20, 10, 40, 0.95); 
-            border: 2px solid var(--neon-color);
-            border-radius: 15px; 
-            padding: 10px; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 8px;
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+            display: none; position: absolute; top: 60px; right: 0; 
+            background: #111; border: 1px solid #333; border-radius: 15px; padding: 10px; grid-template-columns: repeat(4, 1fr); gap: 8px; 
         }
-        .color-dot { 
-            width: 30px; 
-            height: 30px; 
-            border-radius: 50%; 
-            cursor: pointer; 
-            border: 2px solid transparent;
-            transition: 0.2s;
-        }
-        .color-dot:hover { 
-            border-color: #fff;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px currentColor;
-        }
+        .color-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .color-dot:hover { border-color: #fff; }
         .glass-card { 
-            background: rgba(255,255,255,0.03); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 25px; 
-            padding: 25px; 
-            transition: 0.3s;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 25px; padding: 25px; transition: 0.3s;
         }
-        .glass-card:hover { 
-            border-color: var(--neon-color); 
-            background: rgba(255,255,255,0.06); 
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(188, 19, 254, 0.2);
-        }
-        .hero-section { 
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(45, 80, 22, 0.1) 100%);
-            border: 2px solid;
-            border-image: var(--grad-header) 1;
-            border-radius: 35px; 
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(196, 30, 58, 0.15);
-        }
+        .glass-card:hover { border-color: var(--neon-color); background: rgba(255,255,255,0.06); transform: translateY(-5px); }
+        .hero-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 35px; padding: 40px; }
         .section-tab { 
-            padding: 12px 25px; 
-            border-radius: 15px; 
-            cursor: pointer; 
-            font-weight: 900; 
-            border: 2px solid rgba(0, 191, 255, 0.3);
-            transition: 0.3s; 
-            text-transform: uppercase;
-            background: rgba(0, 191, 255, 0.05);
+            padding: 12px 25px; border-radius: 15px; cursor: pointer; font-weight: 900; 
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; text-transform: uppercase;
         }
-        .section-tab:hover {
-            border-color: #00bfff;
-            background: rgba(0, 191, 255, 0.15);
-        }
-        .section-tab.active { 
-            background: var(--grad-footer);
-            color: #000; 
-            border: 2px solid #ffd700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-        }
+        .section-tab.active { background: var(--neon-color); color: #000; border-color: var(--neon-color); }
         .search-input { 
-            background: rgba(255,255,255,0.05); 
-            border: 2px solid rgba(0, 191, 255, 0.3);
-            border-radius: 20px; 
-            padding: 18px 25px; 
-            width: 100%; 
-            color: #fff; 
-            outline: none; 
-            font-size: 18px;
-            transition: 0.3s;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 20px; padding: 18px 25px; width: 100%; color: #fff; outline: none; font-size: 18px;
         }
-        .search-input:focus {
-            border-color: #00bfff;
-            background: rgba(0, 191, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-        }
-        .btn-open { 
-            background: var(--grad-footer);
-            color: #000; 
-            font-weight: 900; 
-            padding: 12px; 
-            border-radius: 12px; 
-            width: 100%; 
-            margin-top: 15px; 
-            text-transform: uppercase; 
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
-        }
-        .btn-open:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
-        }
+        .btn-open { background: var(--neon-color); color: #000; font-weight: 900; padding: 12px; border-radius: 12px; width: 100%; margin-top: 15px; text-transform: uppercase; transition: 0.3s; }
     </style>
 </head>
 <body onload="initTheme()">
@@ -167,16 +50,16 @@
     <div class="max-w-6xl mx-auto px-6 py-10">
         <header class="flex justify-between items-center mb-10">
             <h1 class="text-3xl font-black italic uppercase">IMSIT<span class="neon-text">.ARCHIVE</span></h1>
-            <a href="https://t.me/arhivImsita" target="_blank" class="text-xs font-bold border-2 border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">TG CHANNEL</a>
+            <a href="https://t.me/arhivImsita" target="_blank" class="text-xs font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">TG CHANNEL</a>
         </header>
 
-        <div class="hero-section mb-10 border-2 animate__animated animate__fadeIn">
+        <div class="hero-section mb-10 border-2 animate__animated animate__fadeIn" style="border-color: var(--neon-color);">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
                     <h2 class="text-2xl font-black uppercase neon-text">Премиум доступ</h2>
                     <p class="text-gray-400">Все платные работы и эксклюзивные материалы в нашем Telegram.</p>
                 </div>
-                <a href="https://t.me/arhivImsita" target="_blank" class="text-black px-8 py-4 rounded-xl font-black uppercase shadow-lg hover:scale-105 transition" style="background: linear-gradient(135deg, #ffd700 0%, #9933ff 100%);">ПОДПИСАТЬСЯ</a>
+                <a href="https://t.me/arhivImsita" target="_blank" class="text-black px-8 py-4 rounded-xl font-black uppercase shadow-lg hover:scale-105 transition" style="background-color: var(--neon-color);">ПОДПИСАТЬСЯ</a>
             </div>
         </div>
 
