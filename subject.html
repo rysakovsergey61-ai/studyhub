@@ -40,7 +40,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const name = params.get('name');
-        const type = params.get('type');
+        const type = decodeURIComponent(params.get('type'));
         document.getElementById('subject-title').innerText = name;
 
         fetch('data.json').then(res => res.json()).then(data => {

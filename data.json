@@ -12,6 +12,18 @@
     "link": "https://disk.yandex.ru/d/eng2"
   },
   {
+    "title": "Лекция 1 - Грамматика английского языка",
+    "subject": "Английский язык",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/eng_lect1"
+  },
+  {
+    "title": "Лекция 2 - Особенности произношения",
+    "subject": "Английский язык",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/eng_lect2"
+  },
+  {
     "title": "Практическая 1 - Клетка и её органоиды",
     "subject": "Биология",
     "type": "практика",
@@ -30,6 +42,18 @@
     "link": "https://disk.yandex.ru/d/bio3"
   },
   {
+    "title": "Лекция 1 - Основы биологии",
+    "subject": "Биология",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/bio_lect1"
+  },
+  {
+    "title": "Лекция 2 - Молекулярная биология",
+    "subject": "Биология",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/bio_lect2"
+  },
+  {
     "title": "Практическая 1 - Физическая география",
     "subject": "География",
     "type": "практика",
@@ -40,6 +64,18 @@
     "subject": "География",
     "type": "практика",
     "link": "https://disk.yandex.ru/d/geo2"
+  },
+  {
+    "title": "Лекция 1 - Физическая география планеты",
+    "subject": "География",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/geo_lect1"
+  },
+  {
+    "title": "Лекция 2 - Климаты и природные зоны",
+    "subject": "География",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/geo_lect2"
   },
   {
     "title": "Практическая 1 - Основы программирования",
@@ -90,6 +126,18 @@
     "link": "https://disk.yandex.ru/d/example8"
   },
   {
+    "title": "Лекция 1 - История информатики",
+    "subject": "Информатика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/inf_lect1"
+  },
+  {
+    "title": "Лекция 2 - Структуры данных",
+    "subject": "Информатика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/inf_lect2"
+  },
+  {
     "title": "Практическая 1 - Древний мир",
     "subject": "История",
     "type": "практика",
@@ -102,6 +150,18 @@
     "link": "https://disk.yandex.ru/d/hist2"
   },
   {
+    "title": "Лекция 1 - Всемирная история",
+    "subject": "История",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/hist_lect1"
+  },
+  {
+    "title": "Лекция 2 - История России",
+    "subject": "История",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/hist_lect2"
+  },
+  {
     "title": "Практическая 1 - Анализ художественного текста",
     "subject": "Литература",
     "type": "практика",
@@ -112,6 +172,18 @@
     "subject": "Литература",
     "type": "практика",
     "link": "https://disk.yandex.ru/d/lit2"
+  },
+  {
+    "title": "Лекция 1 - Русская литература XIX века",
+    "subject": "Литература",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/lit_lect1"
+  },
+  {
+    "title": "Лекция 2 - Зарубежная литература",
+    "subject": "Литература",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/lit_lect2"
   },
   {
     "title": "Практическая 1 - Алгебра и функции",
@@ -132,6 +204,18 @@
     "link": "https://disk.yandex.ru/d/math3"
   },
   {
+    "title": "Лекция 1 - Основы математического анализа",
+    "subject": "Математика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/math_lect1"
+  },
+  {
+    "title": "Лекция 2 - Линейная алгебра",
+    "subject": "Математика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/math_lect2"
+  },
+  {
     "title": "Практическая 1 - Человек и общество",
     "subject": "Обществознание",
     "type": "практика",
@@ -142,6 +226,18 @@
     "subject": "Обществознание",
     "type": "практика",
     "link": "https://disk.yandex.ru/d/social2"
+  },
+  {
+    "title": "Лекция 1 - Основы обществознания",
+    "subject": "Обществознание",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/social_lect1"
+  },
+  {
+    "title": "Лекция 2 - Экономика и финансы",
+    "subject": "Обществознание",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/social_lect2"
   },
   {
     "title": "Практическая 1 - Фонетика и орфоэпия",
@@ -162,6 +258,18 @@
     "link": "https://disk.yandex.ru/d/rus3"
   },
   {
+    "title": "Лекция 1 - Грамматика русского языка",
+    "subject": "Русский язык",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/rus_lect1"
+  },
+  {
+    "title": "Лекция 2 - Стилистика и риторика",
+    "subject": "Русский язык",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/rus_lect2"
+  },
+  {
     "title": "Практическая 1 - Механика",
     "subject": "Физика",
     "type": "практика",
@@ -174,6 +282,18 @@
     "link": "https://disk.yandex.ru/d/phys2"
   },
   {
+    "title": "Лекция 1 - Механика и кинематика",
+    "subject": "Физика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/phys_lect1"
+  },
+  {
+    "title": "Лекция 2 - Термодинамика и волны",
+    "subject": "Физика",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/phys_lect2"
+  },
+  {
     "title": "Тема: Ионная Связь 11.02 — БЕСПЛАТНО",
     "subject": "Химия",
     "type": "практика",
@@ -184,5 +304,17 @@
     "subject": "Химия",
     "type": "практика",
     "link": "https://disk.yandex.ru/d/XQYQU7yTgJNAOQ"
+  },
+  {
+    "title": "Лекция 1 - Основы химии и химические реакции",
+    "subject": "Химия",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/chem_lect1"
+  },
+  {
+    "title": "Лекция 2 - Органическая химия",
+    "subject": "Химия",
+    "type": "лекция",
+    "link": "https://disk.yandex.ru/d/chem_lect2"
   }
 ]

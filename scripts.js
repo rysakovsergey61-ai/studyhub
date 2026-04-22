@@ -47,20 +47,19 @@ fetch('data.json')
 
 function render() {
     if (!contentDiv) return;
-    const query = document.getElementById('search').value.toLowerCase();
     
     const filtered = database.filter(i => {
         const type = i.type.toLowerCase().replace('пратика', 'практика');
         return type === currentSection;
     });
 
-    const unique = [...new Set(filtered.map(i => i.subject))]
-        .filter(s => s.toLowerCase().includes(query));
+    // Получаем уникальные предметы и сортируем в алфавитном порядке
+    const unique = [...new Set(filtered.map(i => i.subject))].sort();
 
     contentDiv.innerHTML = unique.map(subject => `
         <div class="glass-card animate__animated animate__fadeInUp">
             <div class="text-xl font-black uppercase mb-4" style="line-height: 1.1;">${subject}</div>
-            <button class="btn-open" onclick="window.location.href='subject.html?name=${encodeURIComponent(subject)}&type=${currentSection}'">Открыть темы</button>
+            <button class="btn-open" onclick="window.location.href='subject.html?name=${encodeURIComponent(subject)}&type=${encodeURIComponent(currentSection)}'">Открыть темы</button>
         </div>
     `).join('');
 }
