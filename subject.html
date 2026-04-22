@@ -6,29 +6,77 @@
     <title>Темы материалов</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --neon-color: #bc13fe; }
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 40px 20px; }
-        .neon-text { color: var(--neon-color); text-shadow: 0 0 15px var(--neon-color); }
+        :root { 
+            --neon-color: #bc13fe;
+            --grad-header: linear-gradient(135deg, #c41e3a 0%, #2d5016 100%);
+            --grad-footer: linear-gradient(135deg, #ffd700 0%, #9933ff 100%);
+            --grad-accent: linear-gradient(135deg, #00bfff 0%, #ffffff 100%);
+        }
+        body { 
+            background: linear-gradient(-45deg, #1a0d2e 0%, #2d1b4e 25%, #1a3a3a 50%, #3d1a1a 75%, #2d2844 100%);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
+            color: #fff; 
+            font-family: sans-serif; 
+            padding: 40px 20px;
+        }
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .neon-text { 
+            color: var(--neon-color); 
+            text-shadow: 0 0 15px var(--neon-color), 0 2px 4px rgba(0,0,0,0.5);
+        }
+        a {
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
         .topic-row { 
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
-            padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; 
-            align-items: center; margin-bottom: 12px; transition: 0.3s;
+            background: rgba(255,255,255,0.03); 
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            padding: 20px; 
+            border-radius: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 12px; 
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .topic-row:hover { border-color: var(--neon-color); background: rgba(255,255,255,0.05); }
+        .topic-row:hover { 
+            border-color: #00bfff;
+            background: rgba(0, 191, 255, 0.08);
+            transform: translateX(5px);
+            box-shadow: 0 6px 25px rgba(0, 191, 255, 0.2);
+        }
         .btn-link { 
-            background: var(--neon-color); color: #000; padding: 10px 25px; 
-            border-radius: 12px; font-weight: 900; text-decoration: none; 
-            text-transform: uppercase; font-size: 12px; transition: 0.3s;
+            background: var(--grad-footer);
+            color: #000; 
+            padding: 10px 25px; 
+            border-radius: 12px; 
+            font-weight: 900; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            font-size: 12px; 
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
         }
-        .btn-link:hover { filter: brightness(1.2); transform: scale(1.05); }
+        .btn-link:hover { 
+            filter: brightness(1.2); 
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+        }
     </style>
 </head>
 <body>
     <div class="max-w-3xl mx-auto">
-        <a href="index.html" style="color: var(--neon-color); text-decoration: none; font-weight: bold; text-transform: uppercase;">← НАЗАД В АРХИВ</a>
+        <a href="index.html" style="color: #00bfff; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: 0.3s;">← НАЗАД В АРХИВ</a>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 32px;">
             <h1 id="subject-title" class="text-4xl font-black uppercase neon-text">...</h1>
-            <a id="tg-button" href="https://t.me/arhivImsita" target="_blank" style="display: none; background: var(--neon-color); color: #000; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-decoration: none; text-transform: uppercase; font-size: 12px;">TG КАНАЛ</a>
+            <a id="tg-button" href="https://t.me/arhivImsita" target="_blank" style="display: none; background: linear-gradient(135deg, #ffd700 0%, #9933ff 100%); color: #000; padding: 12px 25px; border-radius: 12px; font-weight: 900; text-decoration: none; text-transform: uppercase; font-size: 12px; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);">TG КАНАЛ</a>
         </div>
         <div id="topics-list" class="mt-10"></div>
     </div>
