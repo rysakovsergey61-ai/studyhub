@@ -57,13 +57,17 @@
                 return;
             }
 
-            // Показываем кнопку Telegram, если работ больше 5
+            // Показываем кнопку Telegram в заголовке, если работ больше 5
             const tgButton = document.getElementById('tg-button');
             if (filtered.length > 5) {
                 tgButton.style.display = 'inline-block';
             }
 
-            container.innerHTML = filtered.map(t => `
+            // Ограничиваем вывод на 5 работ
+            const displayed = filtered.slice(0, 5);
+            const remaining = filtered.length - displayed.length;
+
+            let html = displayed.map(t => `
                 <div class="topic-row">
                     <span class="font-bold uppercase tracking-tight">${t.title}</span>
                     <a href="${t.link}" target="_blank" class="btn-link">
@@ -71,6 +75,20 @@
                     </a>
                 </div>
             `).join('');
+
+            // Добавляем кнопку для остальных работ, если их больше 5
+            if (remaining > 0) {
+                html += `
+                    <div class="topic-row" style="background: rgba(188, 19, 254, 0.1); border-color: var(--neon-color);">
+                        <span class="font-bold uppercase tracking-tight neon-text">Остальные ${remaining} работ в Telegram</span>
+                        <a href="https://t.me/arhivImsita" target="_blank" class="btn-link">
+                            В Telegram
+                        </a>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
         });
     </script>
 </body>

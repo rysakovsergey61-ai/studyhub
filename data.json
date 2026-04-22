@@ -1,15 +1,45 @@
 [
   {
-    "title": "Тема: Ионная Связь 11.02 — БЕСПЛАТНО",
-    "subject": "Химия",
+    "title": "Практическая 1 - Present Simple",
+    "subject": "Английский язык",
     "type": "практика",
-    "link": "https://disk.yandex.ru/d/elvG-bTn5eZ5IQ"
+    "link": "https://disk.yandex.ru/d/eng1"
   },
   {
-    "title": "Тема: Константа диссоциации 15.05 — БЕСПЛАТНО",
-    "subject": "Химия",
+    "title": "Практическая 2 - Modal Verbs",
+    "subject": "Английский язык",
     "type": "практика",
-    "link": "https://disk.yandex.ru/d/XQYQU7yTgJNAOQ"
+    "link": "https://disk.yandex.ru/d/eng2"
+  },
+  {
+    "title": "Практическая 1 - Клетка и её органоиды",
+    "subject": "Биология",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/bio1"
+  },
+  {
+    "title": "Практическая 2 - Фотосинтез и дыхание",
+    "subject": "Биология",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/bio2"
+  },
+  {
+    "title": "Лабораторная 1 - Экосистемы",
+    "subject": "Биология",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/bio3"
+  },
+  {
+    "title": "Практическая 1 - Физическая география",
+    "subject": "География",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/geo1"
+  },
+  {
+    "title": "Практическая 2 - Карты и масштабы",
+    "subject": "География",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/geo2"
   },
   {
     "title": "Практическая 1 - Основы программирования",
@@ -58,5 +88,101 @@
     "subject": "Информатика",
     "type": "практика",
     "link": "https://disk.yandex.ru/d/example8"
+  },
+  {
+    "title": "Практическая 1 - Древний мир",
+    "subject": "История",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/hist1"
+  },
+  {
+    "title": "Практическая 2 - Средние века",
+    "subject": "История",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/hist2"
+  },
+  {
+    "title": "Практическая 1 - Анализ художественного текста",
+    "subject": "Литература",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/lit1"
+  },
+  {
+    "title": "Практическая 2 - Поэтика и стиховедение",
+    "subject": "Литература",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/lit2"
+  },
+  {
+    "title": "Практическая 1 - Алгебра и функции",
+    "subject": "Математика",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/math1"
+  },
+  {
+    "title": "Практическая 2 - Геометрия и векторы",
+    "subject": "Математика",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/math2"
+  },
+  {
+    "title": "Лабораторная 1 - Производная и интегралы",
+    "subject": "Математика",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/math3"
+  },
+  {
+    "title": "Практическая 1 - Человек и общество",
+    "subject": "Обществознание",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/social1"
+  },
+  {
+    "title": "Практическая 2 - Право и политика",
+    "subject": "Обществознание",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/social2"
+  },
+  {
+    "title": "Практическая 1 - Фонетика и орфоэпия",
+    "subject": "Русский язык",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/rus1"
+  },
+  {
+    "title": "Практическая 2 - Синтаксис и пунктуация",
+    "subject": "Русский язык",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/rus2"
+  },
+  {
+    "title": "Лабораторная 1 - Морфология",
+    "subject": "Русский язык",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/rus3"
+  },
+  {
+    "title": "Практическая 1 - Механика",
+    "subject": "Физика",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/phys1"
+  },
+  {
+    "title": "Практическая 2 - Электричество и магнетизм",
+    "subject": "Физика",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/phys2"
+  },
+  {
+    "title": "Тема: Ионная Связь 11.02 — БЕСПЛАТНО",
+    "subject": "Химия",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/elvG-bTn5eZ5IQ"
+  },
+  {
+    "title": "Тема: Константа диссоциации 15.05 — БЕСПЛАТНО",
+    "subject": "Химия",
+    "type": "практика",
+    "link": "https://disk.yandex.ru/d/XQYQU7yTgJNAOQ"
   }
 ]
